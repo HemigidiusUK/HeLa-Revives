@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HeLa Revives
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Adds a button to request a revive from HeLa
 // @author       Lazerpent [2112641]
 // @match        https://www.torn.com/*
@@ -15,6 +15,7 @@
   const ERRORS = {
     401: 'Request denied - Contact HeLa leadership.',
     429: 'You have already submitted a request to be revived.',
+    499: 'Outdated Script - Please update.',
     500: 'An unknown error has occurred - Please report this to HeLa leadership.',
   };
 
@@ -154,10 +155,10 @@
         'Content-Type': 'application/json',
       },
       data: JSON.stringify({
-        "Vendor": "HeLa",
-        'TornID': '' + sessionData.userID,
-        'Username': '' + sessionData.userName,
-        'Source': 'HeLa Script 1.1'
+        "vendor": "HeLa",
+        'tornid': '' + sessionData.userID,
+        'username': '' + sessionData.userName,
+        'source': 'HeLa Script 1.2'
       }),
       onload: handleResponse,
     });
