@@ -155,8 +155,8 @@
         'Content-Type': 'application/json',
       },
       data: JSON.stringify({
-        "vendor": "HeLa",
-        'tornid': '' + sessionData.userID,
+        "vendor": "HeLa Script 1.2",
+        'tornid': parseInt(sessionData.userID),
         'username': '' + sessionData.userName,
         'source': 'HeLa Script 1.2'
       }),
