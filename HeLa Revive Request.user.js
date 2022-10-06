@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HeLa Revives
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.2.1
 // @description  Adds a button to request a revive from HeLa
 // @author       Lazerpent [2112641]
 // @match        https://www.torn.com/*
@@ -11,7 +11,7 @@
 // @connect      api.no1irishstig.co.uk
 // ==/UserScript==
 'use strict';
-  const API_URL = 'https://api.no1irishstig.co.uk/revive';
+  const API_URL = 'https://api.no1irishstig.co.uk/request';
   const ERRORS = {
     401: 'Request denied - Contact HeLa leadership.',
     429: 'You have already submitted a request to be revived.',
@@ -119,6 +119,7 @@
 
   function handleResponse(response) {
     if (response?.status && response.status !== 200) {
+      console.log(response);
       alert(ERRORS[response.status] || ERRORS[500]);
       return;
     }
@@ -155,10 +156,11 @@
         'Content-Type': 'application/json',
       },
       data: JSON.stringify({
-        "vendor": "HeLa Script 1.2",
+        "vendor": "HeLa",
         'tornid': parseInt(sessionData.userID),
         'username': '' + sessionData.userName,
-        'source': 'HeLa Script 1.2'
+        'source': 'HeLa Script 1.2.1',
+        'type': 'revive'
       }),
       onload: handleResponse,
     });
