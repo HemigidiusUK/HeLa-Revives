@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HeLa Revives
 // @namespace    http://tampermonkey.net/
-// @version      1.2.1
+// @version      1.2.2
 // @description  Adds a button to request a revive from HeLa
 // @author       Lazerpent [2112641]
 // @match        https://www.torn.com/*
@@ -111,7 +111,7 @@
       return;
     }
 
-    const location = document.querySelector(mobile ? '.header-buttons-wrapper' : '#barLife');
+    const location = document.querySelector(mobile ? '.header-buttons-wrapper' : '.life___PlnzK');
     if (location != null) {
       location.children[0].insertAdjacentElement('beforebegin', getButton(mobile));
     }
