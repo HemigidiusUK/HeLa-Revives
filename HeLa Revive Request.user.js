@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HeLa Revives
 // @namespace    http://tampermonkey.net/
-// @version      1.2.2
+// @version      1.2.3
 // @description  Adds a button to request a revive from HeLa
 // @author       Lazerpent [2112641]
 // @match        https://www.torn.com/*
@@ -97,6 +97,7 @@
   }
 
   function checkButton() {
+    if(inCloudflareChallenge()) return;
     const {hospital, mobile} = getSessionData();
     const exists = document.getElementById('hela-btn');
 
@@ -175,6 +176,10 @@
       mobile: data.windowSize === 'mobile',
       hospital: data.statusIcons?.icons?.hospital,
     };
+  }
+
+  function inCloudflareChallenge() {
+    return document.getElementsByClassName('iAmUnderAttack').length;
   }
 
   GM_registerMenuCommand('Request revive from HeLa', () => submitRequest());
